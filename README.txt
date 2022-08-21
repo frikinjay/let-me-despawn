@@ -1,4 +1,4 @@
-LET ME DESPAWN
+# LET ME DESPAWN
 
 When a mob is given an item and the mob equips or picks it up it becomes persistent in the world and will not despawn naturally. One of the largest contributor to entity lag in minecraft are persistent mobs, and modded makes it worse by adding and spawning more mobs.
 
