@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "letmedespawn",
+  "version": "${version}",
+
+  "name": "Let Me Despawn",
+  "description": "Seeks to improve performance by changing mob despawn rules.",
+  "authors": [
+    "frikinjay"
+  ],
+  "contact": {
+    "homepage": "https://frikinjay.com/",
+    "sources": "https://github.com/frikinjay/let-me-despawn"
+  },
+
+  "license": "GPL-3",
+  "icon": "assets/lmd/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+  },
+  "mixins": [
+    "lmd.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "fabric": "*",
+    "minecraft": ">=1.18",
+    "java": ">=17"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
