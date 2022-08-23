@@ -1,0 +1,12 @@
+{
+    "compatibilityLevel": "JAVA_8",
+    "package": "com.frikinjay.letmedespawn.mixin",
+    "refmap": "refmap.letmedespawn.json",
+    "mixins": [
+        "EntityLivingMixin"
+    ],
+    "client": [
+    ],
+    "server": [],
+    "minVersion": "0.6"
+}
