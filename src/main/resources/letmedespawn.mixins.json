@@ -2,7 +2,7 @@
   "required": true,
   "package": "com.frikinjay.lmd.mixin",
   "compatibilityLevel": "JAVA_17",
-  "refmap": "morefrogs.refmap.json",
+  "refmap": "letmedespawn.refmap.json",
   "mixins": [
     "MobMixin"
   ],

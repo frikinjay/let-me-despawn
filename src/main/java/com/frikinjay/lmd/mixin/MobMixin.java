@@ -27,17 +27,15 @@ public abstract class MobMixin extends LivingEntity {
     @Inject(at = @At("TAIL"), method = "setItemSlotAndDropWhenKilled")
     private void setItemSlotAndDropWhenKilled(CallbackInfo info) {
         this.pickedItems = true;
-        this.persistenceRequired = false;
+        this.persistenceRequired = this.hasCustomName();
     }
 
     @Redirect(method = "checkDespawn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Mob;discard()V"))
     private void yeetusCheckus(Mob instance) {
         if (this.pickedItems) {
             this.dropEquipmentOnDespawn();
-            this.discard();
-        } else {
-            this.discard();
         }
+        this.discard();
     }
 
     protected void dropEquipmentOnDespawn() {
