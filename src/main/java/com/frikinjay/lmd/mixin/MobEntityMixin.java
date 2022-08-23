@@ -27,17 +27,16 @@ public abstract class MobEntityMixin extends LivingEntity {
     @Inject(at = @At("TAIL"), method = "equipLootStack")
     private void equipLootStack(CallbackInfo info) {
         this.pickedItems = true;
-        this.persistent = false;
+        this.persistent = this.hasCustomName();
     }
 
     @Redirect(method = "checkDespawn", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/MobEntity;discard()V"))
     private void yeetusCheckus(MobEntity instance) {
         if (this.pickedItems) {
             this.dropEquipmentOnDespawn();
-            this.discard();
-        } else {
-            this.discard();
         }
+        this.discard();
+
     }
 
     protected void dropEquipmentOnDespawn() {
