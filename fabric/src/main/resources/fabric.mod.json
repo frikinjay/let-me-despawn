@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "letmedespawn",
+  "version": "${version}",
+  "name": "Let Me Despawn",
+  "description": "Tweaks mob despawn rules to prevent accidental persistent mobs to increase performance.",
+  "authors": [
+    "frikinjay"
+  ],
+  "contact": {
+    "homepage": "https://github.com/frikinjay/let-me-despawn"
+  },
+  "license": "LGPL-3.0",
+  "icon": "assets/letmedespawn/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.frikinjay.letmedespawn.fabric.LetMeDespawnFabric"
+    ],
+    "client": [
+    ]
+  },
+  "mixins": [
+    "letmedespawn.mixins.json"
+  ],
+  "accessWidener" : "letmedespawn.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.16.7",
+    "minecraft": "~1.21",
+    "java": ">=21",
+    "almanac": ">=1.0.2"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}

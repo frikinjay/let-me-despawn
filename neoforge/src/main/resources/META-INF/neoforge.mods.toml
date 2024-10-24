@@ -1,0 +1,44 @@
+modLoader = "javafml"
+loaderVersion = "[2,)"
+issueTrackerURL = "https://github.com/frikinjay/let-me-despawn/issues"
+license = "GNU LGPL 3.0"
+
+[[mods]]
+modId = "letmedespawn"
+version = "${version}"
+displayName = "Let Me Despawn"
+authors = "frikinjay"
+description = '''
+Tweaks mob despawn rules to prevent accidental persistent mobs to increase performance.
+'''
+logoFile = "lmd.png"
+
+[[dependencies.letmedespawn]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "SERVER"
+
+[[dependencies.letmedespawn]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21,)"
+ordering = "NONE"
+side = "SERVER"
+
+[[dependencies.letmedespawn]]
+modId = "almanac"
+type = "required"
+versionRange = "[1.0.2,)"
+ordering = "AFTER"
+side = "SERVER"
+
+
+[[mixins]]
+config = "letmedespawn.mixins.json"
+
+[[accessTransformers]]
+## The file is relative to the output directory of the resources, or the root path inside the jar when compiled
+## The 'resources' directory represents the root output directory of the resources
+file="META-INF/accesstransformer.cfg"
