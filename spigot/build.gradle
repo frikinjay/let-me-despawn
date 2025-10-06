@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+
+group = 'com.frikinjay.letmedespawn'
+version = '1.4.4'
+
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+}
+
+
+
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
+dependencies {
+    compileOnly "org.spigotmc:spigot-api:${rootProject.spigot_version}"
+    common(project(path: ':common', configuration: 'namedElements')) { transitive false }
+    shadowBundle project(path: ':common', configuration: 'namedElements')
+}
+
+
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    archiveBaseName.set("letmedespawn-1.21.x-spigot")
+    archiveClassifier.set("")
+    archiveVersion.set("1.4.4")
+    destinationDirectory = file("${rootProject.projectDir}/common/build/libs")
+    manifest {
+        attributes(
+            'Main-Class': 'com.frikinjay.letmedespawn.spigot.LetMeDespawnSpigot'
+        )
+    }
+    // Exclude Spigot API and other provided dependencies
+    exclude 'org/spigotmc/**'
+    exclude 'META-INF/maven/org.spigotmc/**'
+    exclude 'META-INF/maven/**'
+}

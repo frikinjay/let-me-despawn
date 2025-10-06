@@ -30,6 +30,8 @@ public abstract class MobMixin extends LivingEntity {
         LetMeDespawn.setPersistence(entity, slot);
     }
 
+    
+
     @Redirect(
             method = {"checkDespawn"},
             at = @At(
@@ -39,8 +41,46 @@ public abstract class MobMixin extends LivingEntity {
     )
     private void letmedespawn$yeetusCheckus(Mob instance) {
         if (Almanac.pickedItems) {
-            Almanac.dropEquipmentOnDiscard(instance);
+            dropEquipmentOnDiscard(instance);
         }
         this.discard();
+    }
+
+    // Hook into the remove method to catch mob removal as this is needed in newer versions & can prevent against lagfixers
+    @Inject(
+            method = {"remove"},
+            at = @At("HEAD")
+    )
+    private void letmedespawn$onRemove(CallbackInfo info) {
+        Mob entity = (Mob) (Object) this;
+        // check if they picked  up items
+        if (Almanac.pickedItems) {
+            // drop equiptment items
+            dropEquipmentOnPickup(entity);
+        }
+    }
+
+    // ported from almanac
+    public static void dropEquipmentOnPickup(Mob entity) {
+        for (EquipmentSlot equipmentSlot : EquipmentSlot.values()) {
+            ItemStack itemStack = entity.getItemBySlot(equipmentSlot);
+            if (!itemStack.isEmpty()) {
+                // create a copy of their items and drop it
+                ItemStack dropStack = itemStack.copy();
+                entity.spawnAtLocation(dropStack);
+            }
+        }
+    }
+
+    // ported from almanac
+    public static void dropEquipmentOnDiscard(Mob entity) {
+        for (EquipmentSlot equipmentSlot : EquipmentSlot.values()) {
+            
+            ItemStack itemStack = entity.getItemBySlot(equipmentSlot);
+            if (!itemStack.isEmpty()) {
+                entity.spawnAtLocation(itemStack);
+                entity.setItemSlot(equipmentSlot, ItemStack.EMPTY);
+            }
+        }
     }
 }
