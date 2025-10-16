@@ -1,0 +1,12 @@
+name: LetMeDespawn
+main: com.frikinjay.letmedespawn.spigot.LetMeDespawnSpigot
+version: 1.4.4
+author: frikinjay
+description: Allows mobs to despawn as configured.
+api-version: 1.13
+
+commands:
+  letmedespawn:
+    description: LetMeDespawn configuration command
+    usage: /letmedespawn
+    aliases: [lmd]
